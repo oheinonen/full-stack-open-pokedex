@@ -1,0 +1,7 @@
+[[Exercise description here](https://fullstackopen.com/en/part11/introduction_to_ci_cd#exercise-11-1)]
+
+For this exercise, I'm working with team of 6 people on an application coded with Ruby. I personally have no knowledge of Ruby. In CI, I decide to use RuboCop for linting, RSpec for testing and Bundler for building the application. Rubocop is a popular and flexible choice for linting Ruby applications. RSpec is the most frequently used testing library for Ruby, which is why I choose to use that. Bundler is also popular choice for building Ruby apps, and it ensures a consisten environment for Ruby projects by monitoring and installing the precise gems and versions required.
+
+Some alternative providers to consider for CI are Travis CI and Semaphore. Travis CI supports Ruby, has quick setup and is developer-friendly, whereas Semaphore has customisable workflows and offers boosters that decrease running time of tests for Ruby project. Both options can be integrated with Github.
+
+Size of the team and application state hint that this application is rather small, and therefore cloud-based environment would suit fine for this project as it is generally easier to setup and is more cost-effective. However, to make the decision I'd need to know size of the application and if there are some special requirements, such as need for graphics card to run tests, taking place. In general, cloud based environtment would be the one to choose.
