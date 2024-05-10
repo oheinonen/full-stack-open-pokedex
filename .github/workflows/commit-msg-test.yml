@@ -23,7 +23,7 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: conditional print
-        if: ${{ github.event_name == 'push' && contains(toJson(github.event.commits.*.message), '#skip') }}
+        if: ${{ github.event_name == 'push' && contains(join(toJson(github.event.commits.*.message)), '#skip') }}
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "should not print if skip present"
