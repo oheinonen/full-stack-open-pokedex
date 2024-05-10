@@ -36,6 +36,22 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Deployment Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ github.event_name == 'push' && success() }}
+        with:
+            severity: info
+            text: A new version of Pokedex deployed!
+            details: to https://bitter-water-1946.fly.dev/
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Deployment Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ github.event_name == 'push' && failure() }}
+        with:
+            severity: error
+            text: Pokedex build failed
+            details: The build failed at commit ${{ github.sha }}. Click here to view the commit ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]

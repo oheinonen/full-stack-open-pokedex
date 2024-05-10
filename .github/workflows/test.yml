@@ -1,0 +1,19 @@
+name: Testing stuff
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]    
+
+jobs:
+  a_test_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: test failure
+        if: ${{ failure() }}
+        run: echo The build failed at commit ${{ github.sha }}. Click here to view the commit ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
+     
+      - name: test success
+        if: ${{ success() }}
+        run: echo to https://bitter-water-1946.fly.dev/
