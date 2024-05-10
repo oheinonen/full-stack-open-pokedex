@@ -52,6 +52,15 @@ jobs:
             text: Pokedex build failed
             details: The build failed at commit ${{ github.sha }}. Click here to view the commit ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - uses: actions/checkout@v4
+      - name: test failure
+        if: ${{ failure() }}
+        run: echo The build failed at commit ${{ github.sha }}. Click here to view the commit ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
+
+      - name: test success
+        if: ${{ success() }}
+        run: echo to https://bitter-water-1946.fly.dev/
+
 
   tag_release:
     needs: [simple_deployment_pipeline]
