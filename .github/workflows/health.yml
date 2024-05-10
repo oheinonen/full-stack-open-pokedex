@@ -2,9 +2,6 @@
 name: Periodical health check
 
 on:
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize]
   schedule:
     - cron: '15 * * * *'
 
